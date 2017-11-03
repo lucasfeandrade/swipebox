@@ -614,6 +614,12 @@
 				$('#swipebox-close').bind(action, function () {
 					$this.closeSlide();
 				});
+
+				$('#swipebox-contact').bind(action, function () {
+					if (plugin.settings.contactAction && typeof plugin.settings.contactAction === 'function') {
+						plugin.settings.contactAction();
+					}
+				});
 			},
 
 			/**
