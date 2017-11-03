@@ -1,10 +1,10 @@
-module.exports = function(grunt) {
+module.exports = function (grunt) {
 
 	// don't forget to update the version in the package.json and bower.json file
 
 	// load dependencies
 	require('load-grunt-tasks')(grunt);
-	
+
 	grunt.initConfig({
 
 		version: grunt.file.readJSON('package.json').version,
@@ -12,7 +12,7 @@ module.exports = function(grunt) {
 
 		// notify cross-OS - see https://github.com/dylang/grunt-notify
 		notify: {
-			
+
 			scss: {
 				options: {
 					title: 'SCSS compiled',
@@ -38,22 +38,22 @@ module.exports = function(grunt) {
 		// compile scss
 		sass: {
 
-			dist:{
-				options:{
+			dist: {
+				options: {
 					style: 'expanded'
 				},
 
-				files:{
+				files: {
 					'../src/css/swipebox.css': '../scss/swipebox.scss',
 				}
 			},
 
-			demo:{
-				options:{
+			demo: {
+				options: {
 					style: 'compressed'
 				},
 
-				files:{
+				files: {
 					'../demo/style.css': '../demo/scss/style.scss',
 				}
 			}
@@ -83,30 +83,30 @@ module.exports = function(grunt) {
 
 		// chech our JS
 		jshint: {
-			options : {
-				jshintrc : '.jshintrc'
+			options: {
+				jshintrc: '.jshintrc'
 			},
-			all: [ '../src/js/jquery.swipebox.js' ]
+			all: '../src/js/jquery.swipebox.js'
 		},
 
 		// minify JS
 		uglify: {
 
-			options:{
-				banner : '/*! Swipebox v<%= version %> | Constantin Saguin csag.co | MIT License | github.com/brutaldesign/swipebox */\n'
+			options: {
+				banner: '/*! Swipebox v<%= version %> | Constantin Saguin csag.co | MIT License | github.com/brutaldesign/swipebox */\n'
 			},
 
 			admin: {
 				files: {
-					'../src/js/jquery.swipebox.min.js': [ '../src/js/jquery.swipebox.js']
+					'../src/js/jquery.swipebox.min.js': ['../src/js/jquery.swipebox.js']
 				}
 			}
 		},
 
 		// watch it live
 		watch: {
-			js: {                       
-				files: [ '../src/js/*.js' ],
+			js: {
+				files: ['../src/js/*.js'],
 				tasks: [
 					'jshint',
 					'uglify',
@@ -129,18 +129,20 @@ module.exports = function(grunt) {
 			},
 
 			livereload: {
-				files: [ '../src/css/*.css', '../demo/*.css' ],
-				options: { livereload: true }
+				files: ['../src/css/*.css', '../demo/*.css'],
+				options: {
+					livereload: true
+				}
 			}
 		},
 
-		
-	} ); // end init config
+
+	}); // end init config
 
 	/**
 	 * Default task
 	 */
-	grunt.registerTask( 'default', [
+	grunt.registerTask('default', [
 		'sass:dist',
 		'autoprefixer',
 		'cssmin',
@@ -148,7 +150,7 @@ module.exports = function(grunt) {
 		'uglify',
 		'sass:demo',
 		'notify:dist'
-	] );
+	]);
 
 	/**
 	 * Dev task
@@ -156,7 +158,7 @@ module.exports = function(grunt) {
 	 * The main tasks for development
 	 *
 	 */
-	grunt.registerTask( 'dev', [
+	grunt.registerTask('dev', [
 		'sass:dist',
 		'autoprefixer',
 		'cssmin',
@@ -164,5 +166,5 @@ module.exports = function(grunt) {
 		'uglify',
 		'sass:demo',
 		'watch'
-	] );
+	]);
 };
