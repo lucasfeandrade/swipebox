@@ -127,7 +127,8 @@ html.swipebox-html.swipebox-touch {
 
 #swipebox-prev,
 #swipebox-next,
-#swipebox-close {
+#swipebox-close,
+#swipebox-contact {
   background-image: url(../img/icons.png);
   background-repeat: no-repeat;
   border: none !important;
@@ -161,6 +162,14 @@ html.swipebox-html.swipebox-touch {
   position: absolute;
   z-index: 9999;
   background-position: 15px 12px;
+}
+
+#swipebox-contact {
+  top: 0;
+  right: 20;
+  position: absolute;
+  z-index: 9999;
+  background-image: none;
 }
 
 .swipebox-no-close-button #swipebox-close {
@@ -259,6 +268,10 @@ html.swipebox-html.swipebox-touch {
 @media screen and (min-width: 800px) {
   #swipebox-close {
     right: 10px;
+  }
+
+  #swipebox-close {
+    right: 30px;
   }
 
   #swipebox-arrows {
