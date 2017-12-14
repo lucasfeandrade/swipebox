@@ -22,6 +22,8 @@
 				afterMedia: null,
 				nextSlide: null,
 				prevSlide: null,
+				closeOnBack: false,
+
 				loopAtEnd: false,
 				autoplayVideos: false,
 				queryStringData: {},
@@ -615,6 +617,15 @@
 					$this.closeSlide();
 				});
 
+				if (plugin.settings.closeOnBack && window.onpopstate === null) {
+					var thislocation = document.location.href;
+					window.onpopstate = function () {
+						window.onpopstate = null;
+						window.location.replace(thislocation);
+						$this.closeSlide();
+					};
+				}
+
 				$('#swipebox-contact').bind(action, function () {
 					if (plugin.settings.contactAction && typeof plugin.settings.contactAction === 'function') {
 						plugin.settings.contactAction();
@@ -944,6 +955,9 @@
 			 * Close
 			 */
 			closeSlide: function () {
+				if (plugin.settings.closeOnBack) {
+					window.onpopstate = null;
+				}
 				$('html').removeClass('swipebox-html');
 				$('html').removeClass('swipebox-touch');
 				$(window).trigger('resize');
